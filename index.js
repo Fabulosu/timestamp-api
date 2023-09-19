@@ -26,8 +26,17 @@ app.get("/api/hello", function (req, res) {
 
 const isValidDate = (date) => date.toUTCString() === "Invalid Date"
 
+app.get("/api", (req, res) => {
+  res.send({
+    unix: new Date().getTime(),
+    utc: new Date().toUTCString(),
+  });
+})
+
 app.get("/api/:date", (req, res) => {
   let date = new Date(req.params.date);
+
+
 
   if(isValidDate(date)) {
     date = new Date(+req.params.date);
